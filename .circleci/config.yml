@@ -32,13 +32,12 @@ jobs:
         environment:
           DATABASE_URL: postgres://postgres:postgres@localhost/classroom
     steps:
+      working_directory	: ~/project/app
       - checkout
       - heroku/deploy-via-git:
-          working_directory: /app
-          only-branch: main
+          branch: main
       - run:
           name: Overwrite env variables
-          working_directory: /app
           command: |
             echo "env_variables:" >> app.yaml
             echo "  GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID}" >> app.yaml
@@ -50,7 +49,6 @@ jobs:
       - gcp-cli/initialize
       - run:
           name: Deploy to Google App Engine
-          working_directory: /app
           command: |
             gcloud app --quiet deploy app.yaml
 
