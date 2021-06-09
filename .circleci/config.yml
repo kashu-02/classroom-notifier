@@ -31,8 +31,8 @@ jobs:
       - image: cimg/node:14.17.0
         environment:
           DATABASE_URL: postgres://postgres:postgres@localhost/classroom
+    working_directory	: ~/project/app
     steps:
-      working_directory	: ~/project/app
       - checkout
       - heroku/deploy-via-git:
           branch: main
