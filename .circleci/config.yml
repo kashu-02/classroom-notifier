@@ -3,6 +3,7 @@ version: 2.1
 orbs:
   node: circleci/node@4.4.0
   gcp-cli: circleci/gcp-cli@2.2.0
+  heroku: circleci/heroku@1.2.6
 
 jobs:
   test:  
@@ -23,6 +24,7 @@ jobs:
       # - run:
       #     name: Run tests
       #     command: npm test
+      #     working_directory: /app
 
   build:  
     docker:
@@ -31,15 +33,34 @@ jobs:
           DATABASE_URL: postgres://postgres:postgres@localhost/classroom
     steps:
       - checkout
-      - node/install-packages:
-          app-dir: app
-          pkg-manager: yarn
+      - heroku/deploy-via-git:
+          working_directory: /app
+          only-branch: main
+      - run:
+          name: Overwrite env variables
+          working_directory: /app
+          command: |
+            echo "env_variables:" >> app.yaml
+            echo "  GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID}" >> app.yaml
+            echo "  GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET}" >> app.yaml
+            echo "  SECRET_KEY: ${SECRET_KEY}" >> app.yaml
+            echo "  SENDGRID_APIKEY: ${SENDGRID_APIKEY}" >> app.yaml
+            echo "  fromemail: ${fromemail}" >> app.yaml
+            echo "  reply_to: ${reply_to}" >> app.yaml
+      - gcp-cli/initialize
+      - run:
+          name: Deploy to Google App Engine
+          working_directory: /app
+          command: |
+            gcloud app --quiet deploy app.yaml
 
 workflows:
-  build_and_test:
+  build:
     jobs:
       - test
       - build:
+          requires:
+            - test
           filters:
             branches:
               only:
