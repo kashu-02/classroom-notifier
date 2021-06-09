@@ -6,8 +6,7 @@ orbs:
   heroku: circleci/heroku@1.2.6
 
 jobs:
-  test:
-    working_directory	: ~/project/app  
+  test:  
     docker:
       - image: cimg/node:14.17.0
         environment:
@@ -18,10 +17,8 @@ jobs:
           POSTGRES_PASSWORD: postgres
           POSTGRES_DB: classroom
     steps:
-      - checkout:
-          path: ~/project
+      - checkout
       - node/install-packages:
-          app-dir: app
           pkg-manager: yarn 
       # - run:
       #     name: Run tests
@@ -35,8 +32,7 @@ jobs:
           DATABASE_URL: postgres://postgres:postgres@localhost/classroom
     working_directory	: ~/project/app
     steps:
-      - checkout:
-          path: ~/project
+      - checkout
       - heroku/deploy-via-git:
           branch: main
       - run:
