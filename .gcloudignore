@@ -4,6 +4,7 @@
 node_modules/
 .circleci/
 .github/
+.vscode
 Procfile
 .env
 serviceAccountKey.json
