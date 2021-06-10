@@ -26,7 +26,7 @@ const addUser = function (name, email,access_token,reflesh_token,tokens,jwt_toke
       user.jwt_token = jwt_token
       user.save()
     }
-    resolve
+    resolve()
   }).catch((e) => {
     console.log(e)
     reject(e)
