@@ -3,7 +3,8 @@ const uuid = require('node-uuid')
 const UsersDB = require('./UsersDB')
 
 const addUser = function (name, email,access_token,reflesh_token,tokens,jwt_token) {
-  UsersDB.findOrCreate({
+  return new Promise((resolve,reject) => {
+    UsersDB.findOrCreate({
     where: {
       email: email
     },
@@ -25,11 +26,12 @@ const addUser = function (name, email,access_token,reflesh_token,tokens,jwt_toke
       user.jwt_token = jwt_token
       user.save()
     }
-    return
+    resolve
   }).catch((e) => {
     console.log(e)
-    return e
+    reject(e)
 })
+  })
 }
 
 const Logout = function (jwt_token) {
