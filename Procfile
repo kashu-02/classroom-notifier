@@ -1,1 +1,1 @@
-worker: node ./schedule/cron.js
+worker: yarn schedule
