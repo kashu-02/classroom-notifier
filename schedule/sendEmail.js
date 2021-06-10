@@ -31,15 +31,9 @@ const sendEmail = async function (to, Classname, announcement) {
       }
     });
   }
-  let subject
-  let text
-  if (moment(announcement.updateTime).isBetween(moment(announcement.creationTime),moment(announcement.creationTime).add(1,'minutes'))) {
-    subject = `【Classroom(新規投稿)】${Classname}`
-    text = `${Classname}\n${moment(announcement.updateTime).add(9,'hours').format("YYYY年MM月DD日　hh時mm分ss秒　投稿")}\n${name || '不明なユーザー'}\n\n${announcement.text}\n\n${attachment}\n\n-------------------------\n※このメールには返信できません。\nこの配信を解除するには「https://classroom-notifier.netlify.app」にアクセスしてください。`
-  } else {
-    subject = `【Classroom(編集済み)】${Classname}`
-    text = `${Classname}\n${moment(announcement.updateTime).add(9,'hours').format("YYYY年MM月DD日　hh時mm分ss秒　編集")}\n${name || '不明なユーザー'}\n\n${announcement.text}\n\n${attachment}\n\n-------------------------\n※このメールには返信できません。\nこの配信を解除するには「https://classroom-notifier.netlify.app」にアクセスしてください。`
-  }
+
+  let subject = `【Classroom(新規投稿)】${Classname}`
+  let text = `${Classname}\n${moment(announcement.updateTime).add(9,'hours').format("YYYY年MM月DD日　hh時mm分ss秒　投稿")}\n${name || '不明なユーザー'}\n\n${announcement.text}\n\n${attachment}\n\n-------------------------\n※このメールには返信できません。\nこの配信を解除するには「https://classroom-notifier.netlify.app」にアクセスしてください。`
   
   const msg = {
     to: to,
