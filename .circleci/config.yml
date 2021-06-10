@@ -41,6 +41,7 @@ jobs:
             echo "  SENDGRID_APIKEY: ${SENDGRID_APIKEY}" >> app.yaml
             echo "  fromemail: ${fromemail}" >> app.yaml
             echo "  reply_to: ${reply_to}" >> app.yaml
+            echo "  DATABASE_URL: ${DATABASE_URL}" >> app.yaml
       - gcp-cli/initialize
       - run:
           name: Deploy to Google App Engine
