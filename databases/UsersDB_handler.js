@@ -51,14 +51,17 @@ const Logout = function (jwt_token) {
 }
 
 const getUser = async function (jwt_token) {
-  const user = await UsersDB.findOne({
+  return new Promise((resolve,reject) => {
+  UsersDB.findOne({
     where: {
       jwt_token: jwt_token
     }
+  }).then((data) => {
+    resolve(data)
   }).catch(e => {
-    return e
+    reject(e)
   })
-  return user
+  })
 }
 
 const deleteUser = function (tokens) {
