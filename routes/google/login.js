@@ -39,7 +39,7 @@ router.post('/', function (req, res, next) {
       algorithm: 'HS256',
       expiresIn: '1h'
     })
-    UsersDB.addUser(name, email,access_token,reflesh_token,JSON.stringify(tokens),jwt_token)
+    await UsersDB.addUser(name, email,access_token,reflesh_token,JSON.stringify(tokens),jwt_token)
     res.json({ "tokens": jwt_token })
     Idlist(tokens)
   })().catch(next);
