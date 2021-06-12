@@ -16,7 +16,7 @@ const sendEmail = async function (to, Classname, announcement) {
   if (announcement.materials) {
     attachment += "\n\n-------------------------\n【添付ファイル】\n"
     announcement.materials.forEach(material => {
-      console.log(material)
+      //console.log(material)
       if (material.driveFile) {
         attachment += `「${material.driveFile.driveFile.title}」：\n${material.driveFile.driveFile.alternateLink}\n`
       }
@@ -48,7 +48,7 @@ const sendEmail = async function (to, Classname, announcement) {
   }
 
   sgMail.send(msg).then(res => {
-      console.log(res);
+      //console.log(res);
   }).catch(e => {
       console.log(e);
   });
