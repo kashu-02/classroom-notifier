@@ -18,7 +18,7 @@ const chkclassroom = function () {
     list.forEach(async (element) => {
       let nowdate = moment().utc()
       let announcements = await getAnnouncements(element.ClassId, element.User.tokens)
-      console.log(announcements)
+      //console.log(announcements)
       announcements.forEach((announcement) => {
         if (moment(announcement.updateTime).isAfter(moment(element.LastUpdate))) {
           sendEmail(element.SendEmail, element.Classname, announcement)
