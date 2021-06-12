@@ -25,7 +25,7 @@ const getAnnouncements = function (courseId, tokens) {
         console.log(data)
         const announcements = data.data.announcements;
         if (announcements && announcements.length) {
-          console.log(announcements)
+          //console.log(announcements)
           resolve(announcements)
         } else {
           console.log('No announcements found.')
