@@ -14,6 +14,7 @@ const getAnnouncements = function (courseId, tokens) {
       oauth2Client.setCredentials(JSON.parse(tokens));
       const classroom = google.classroom({ version: 'v1', auth: oauth2Client });
       classroom.courses.announcements.list({
+        announcementStates: 'PUBLISHED',
         courseId: courseId,
         pageSize: 10,
         orderBy: 'updateTime desc'
