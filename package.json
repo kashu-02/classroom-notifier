@@ -7,16 +7,16 @@
     "schedule": "node ./schedule/cron.js"
   },
   "dependencies": {
-    "@sendgrid/mail": "^7.4.4",
+    "@sendgrid/mail": "^7.4.5",
     "base64url": "^3.0.1",
     "cookie-parser": "~1.4.5",
     "cors": "^2.8.5",
     "cron": "^1.8.2",
     "debug": "~4.3.1",
-    "dotenv": "^9.0.0",
+    "dotenv": "^10.0.0",
     "express": "~4.17.1",
     "global": "^4.4.0",
-    "googleapis": "^73.0.0",
+    "googleapis": "^80.0.0",
     "helmet": "^4.6.0",
     "http-errors": "~1.8.0",
     "jsonwebtoken": "^8.5.1",
@@ -24,9 +24,9 @@
     "morgan": "~1.10.0",
     "node-uuid": "^1.4.8",
     "pg": "^8.6.0",
-    "pg-hstore": "^2.3.3",
+    "pg-hstore": "^2.3.4",
     "pug": "3.0.2",
-    "sequelize": "^6.6.2"
+    "sequelize": "^6.6.4"
   },
   "devDependencies": {}
 }
