@@ -37,7 +37,7 @@ router.post('/', function (req, res, next) {
       email: email
     }, jwtSECRET_KEY, {
       algorithm: 'HS256',
-      expiresIn: '1h'
+      expiresIn: '10m'
     })
     await UsersDB.addUser(name, email,access_token,reflesh_token,JSON.stringify(tokens),jwt_token)
     res.json({ "tokens": jwt_token })
