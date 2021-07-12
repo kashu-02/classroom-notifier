@@ -10,8 +10,13 @@ const API_KEY = process.env.SENDGRID_APIKEY
 sgMail.setApiKey(API_KEY);
 
 const sendEmail = async function (to, Classname, announcement) {
-  const Idlist = await IdlistDB.getIdList(announcement.creatorUserId)
-  const name = Idlist.name || '不明なユーザー'
+  let name
+  try {
+    const Idlist = await IdlistDB.getIdList(announcement.creatorUserId)
+    name = Idlist.name
+  } catch {
+    name = '不明なユーザー'
+  }
   let attachment = ""
   if (announcement.materials) {
     attachment += "\n\n-------------------------\n【添付ファイル】\n"
