@@ -11,8 +11,8 @@ sgMail.setApiKey(API_KEY);
 
 const sendEmail = async function (to, Classname, announcement) {
   const Idlist = await IdlistDB.getIdList(announcement.creatorUserId)
-  const name = Idlist.name
-  let attachment = "";
+  const name = Idlist.name || '不明なユーザー'
+  let attachment = ""
   if (announcement.materials) {
     attachment += "\n\n-------------------------\n【添付ファイル】\n"
     announcement.materials.forEach(material => {

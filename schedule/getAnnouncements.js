@@ -23,7 +23,6 @@ const getAnnouncements = function (courseId, tokens) {
           console.log(err)
           reject(err)
         }
-        console.log(data)
         const announcements = data.data.announcements;
         if (announcements && announcements.length) {
           //console.log(announcements)
